@@ -37,8 +37,5 @@ public class DenunciaController {
         denunciaRepository.deleteById(id);
     }
 
-    @GetMapping
-    public String pruebaEndpoint() {
-        return "La API está activa y lista para recibir POST";
-    }
+
 }
