@@ -36,4 +36,9 @@ public class DenunciaController {
     public void eliminarDenuncia(@PathVariable Long id) {
         denunciaRepository.deleteById(id);
     }
+
+    @GetMapping
+    public String pruebaEndpoint() {
+        return "La API está activa y lista para recibir POST";
+    }
 }
