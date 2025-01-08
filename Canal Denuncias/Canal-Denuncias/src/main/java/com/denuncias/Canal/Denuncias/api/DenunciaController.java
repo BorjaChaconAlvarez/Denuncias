@@ -4,7 +4,10 @@ package com.denuncias.Canal.Denuncias.api;
 import com.denuncias.Canal.Denuncias.clases.Denuncia;
 import com.denuncias.Canal.Denuncias.repositories.DenunciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 // Controlador Rest para gestionar las denuncias
 @RestController  // Indican que esta clase es un controlador Rest
@@ -17,9 +20,15 @@ public class DenunciaController {
 
 //ENDPOINT PARA ENVIAR UNA DENUNCIA POST
 
+   // @PostMapping
+   // public Denuncia enviarDenuncia(@RequestBody Denuncia denuncia) {
+    //    return denunciaRepository.save(denuncia); //Guarda la denuncia y la devuelve
+    //}
+
     @PostMapping
-    public Denuncia enviarDenuncia(@RequestBody Denuncia denuncia) {
-        return denunciaRepository.save(denuncia); //Guarda la denuncia y la devuelve
+    public ResponseEntity<?> enviarDenuncia (@RequestBody Denuncia denuncia) {
+        Denuncia guardada = denunciaRepository.save(denuncia);
+        return ResponseEntity.ok(Map.of("mensaje",  "Denuncia creada con éxito", "id", guardada.getId()));
     }
 
     //endpoint para listar todas las denuncias (GET)
